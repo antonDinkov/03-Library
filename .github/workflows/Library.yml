@@ -30,17 +30,22 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Start server
-      run: npm run server &
-
-    - name: Front
-      run: npm run start &
+    - name: Start backend
+      run: |
+          nohup npm run server > server.log 2>&1 &
+          sleep 5
+          echo "Backend started"
+      
+    - name: Start frontend
+      run: |
+        nohup npm run start > front.log 2>&1 &
+        sleep 5
+        echo "Frontend started"
 
     - name: Wait for servers to start
-      run: npx wait-on http://localhost:3030 http://localhost:3000
-
-    - name: Playwright install browsers
-      run: npx playwright install --with-deps
+      run: |
+        npx wait-on tcp:3000 tcp:3030
+        echo "Servers are up"
 
     - name: Test
       run: npm run test
