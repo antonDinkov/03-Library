@@ -6,7 +6,7 @@
     "scripts": {
         "server": "cd server && node server.js",
         "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1",
-        start:ci": "npx start-server-and-test \"npm run server & npm run start\" http://localhost:3030 http://localhost:3000 npm test",
+        "start:ci": "npx start-server-and-test \"npm run server & npm run start\" http://localhost:3030 http://localhost:3000 npm test",
         "test": "playwright test"
     },
     "author": "",
