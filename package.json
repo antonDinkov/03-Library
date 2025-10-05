@@ -4,7 +4,7 @@
     "description": "Online Book Library Single Page Application",
     "main": "index.html",
     "scripts": {
-        "start:ci": "start-server-and-test \"npm run server & npm start\" http://localhost:3030 http://localhost:3000 npm test",
+        "start:ci": "npx start-server-and-test \"npm run server & npm start\" http://localhost:3030 http://localhost:3000 npm test",
         "test": "playwright test"
     },
     "author": "",
