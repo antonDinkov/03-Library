@@ -30,9 +30,6 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
-
     - name: Start backend
       run: |
           nohup npm run server > server.log 2>&1 &
