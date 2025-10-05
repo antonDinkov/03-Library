@@ -52,3 +52,21 @@ jobs:
 
     - name: Test
       run: npm run test
+  deploy:
+    runs-on: ubuntu-22.04
+
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
+
+    steps:
+    - name: Deploy Front to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.LIBRARY_FRONT }}
+        api-key: ${{ secrets.RENDER_TOKEN }}
+
+    - name: Deploy Back to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.LIBRARY_BACK }}
+        api-key: ${{ secrets.RENDER_TOKEN }}
