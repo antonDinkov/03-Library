@@ -30,7 +30,7 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Start servers and run tests
+    - name: Start server
       run: npm run server &
 
     - name: Front
