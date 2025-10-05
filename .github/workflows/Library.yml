@@ -30,11 +30,5 @@ jobs:
     - name: Install
       run: npm ci
 
-    # Start backend and frontend simultaneously, wait until both are ready, then run tests
-    - name: Start backend + frontend and run tests
-      run: |
-        # Install start-server-and-test if not already
-        npm install -D start-server-and-test
-
-        # Start backend on 3030 and frontend on 3000, then run tests
-        npx start-server-and-test "npm run server" http://localhost:3030 "npx start-server-and-test 'npm start' http://localhost:3000 'npm test'"
+    - name: Start servers and run tests
+      run: npm run start:ci
