@@ -33,13 +33,13 @@ jobs:
     - name: Server
       run: |
         npm run server &
-        sleep 5
+        sleep 20
       
 
     - name: Front
       run: |
         npm start &
-        sleep 5
+        sleep 20
 
     - name: Check running processes
       run: ps aux | grep node
