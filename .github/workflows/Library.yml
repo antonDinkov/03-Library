@@ -36,8 +36,11 @@ jobs:
     - name: Front
       run: npm run start &
 
+    - name: Wait for servers to start
+      run: npx wait-on http://localhost:3030 http://localhost:3000
+
     - name: Playwright install browsers
-      uses: microsoft/playwright-github-action@v1
+      run: npx playwright install --with-deps
 
     - name: Test
       run: npm run test
