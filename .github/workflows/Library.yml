@@ -30,20 +30,11 @@ jobs:
     - name: Install
       run: npm ci
 
-    - name: Server
+    # Start backend and frontend simultaneously, wait until both are ready, then run tests
+    - name: Start backend + frontend and run tests
       run: |
-        npm run server &
-        sleep 20
-      
+        # Install start-server-and-test if not already
+        npm install -D start-server-and-test
 
-    - name: Front
-      run: |
-        npm start &
-        sleep 20
-        curl -v http://localhost:3000 || echo "Frontend not responding"
-
-    - name: Check running processes
-      run: ps aux | grep node
-
-    - name: Tests
-      run: npm test
+        # Start backend on 3030 and frontend on 3000, then run tests
+        npx start-server-and-test "npm run server" http://localhost:3030 "npx start-server-and-test 'npm start' http://localhost:3000 'npm test'"
